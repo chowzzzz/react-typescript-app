@@ -43,9 +43,9 @@ const UserDetailsPage = () => {
 	}, []);
 
 	return (
-		<div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-200 md:px-10 lg:px-0 md:gap-3 lg:gap-6">
+		<div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-200 md:px-20 lg:px-0 md:gap-3 lg:gap-6">
 			<button
-				className="p-2 bg-gray-600 text-white rounded text-xs uppercase font-semibold align-top"
+				className="mt-10 mr-5 md:mt-0 p-2 bg-gray-600 text-white rounded text-xs uppercase font-semibold align-top"
 				onClick={() => history.goBack()}
 			>
 				Back
