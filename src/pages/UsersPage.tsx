@@ -1,28 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import axios from "axios";
-import { Items, UserRes } from "../interface";
+import axios, { AxiosResponse } from "axios";
+import { User } from "../interface";
 import CardComponent from "../components/CardComponent";
+import LoadingCardComponent from "../components/LoadingCardComponent";
 
-interface Props {}
-
-const UsersPage = (props: Props) => {
-	const [users, setUsers] = useState<Array<Items>>([]);
-	const history = useHistory();
+const UsersPage = () => {
+	const [users, setUsers] = useState<User[]>([]);
+	const [userLoading, setUserLoading] = useState<boolean>(false);
 
 	useEffect(() => {
+		setUserLoading(true);
 		axios
-			.get("https://jsonplaceholder.typicode.com/users")
-			.then((res) => {
-				let newData: Array<Items> = [];
-				res.data.forEach((user: UserRes) => {
-					let tmpObj: Items = {
-						id: user.id,
-						title: user.name
-					};
-					newData.push(tmpObj);
-				});
-				setUsers(newData);
+			.get<User[]>("https://jsonplaceholder.typicode.com/users")
+			.then((res: AxiosResponse) => {
+				setUserLoading(false);
+				setUsers(res.data);
 			})
 			.catch((err) => {
 				console.error(`getUsers: ${err}`);
@@ -31,11 +23,11 @@ const UsersPage = (props: Props) => {
 
 	return (
 		<div className="min-h-screen flex items-center justify-center bg-gray-200">
-			<CardComponent
-				title="Users"
-				items={users}
-				handleClick={(id) => history.push(`/user/${id}`)}
-			/>
+			{userLoading ? (
+				<LoadingCardComponent />
+			) : (
+				<CardComponent title="Users" users={users} />
+			)}
 		</div>
 	);
 };
