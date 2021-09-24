@@ -16,7 +16,7 @@ This application was written for an SWE internship interview.
 
 -   [Tech-stack](#tech-stack-computer)
 -   [Getting Started](#getting-started-book)
--   [Screenshots](#screenshots-camera)
+-   [Links](#links-link)
 
 ## Tech-stack :computer:
 
@@ -29,3 +29,6 @@ This application was written for an SWE internship interview.
 npm install
 npm start
 ```
+
+## Links 🔗
+Check out the app here: https://chowzzzz.github.io/react-typescript-app/
